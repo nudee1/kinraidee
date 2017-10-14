@@ -52,7 +52,7 @@
           <div class="field has-addons">
           <div class="control is-expanded">
           <div class="select is-fullwidth">
-            <select class="input" name="" style="width : 100%" v-model="t">
+            <select class="input" name="" style="width : 100%" v-model="contry">
               <option value="Thai">Thailand</option>
               <option value="Japanese" >Japan</option>
               <option value="French" >French</option>
@@ -62,10 +62,10 @@
            </select>
            </div>
            </div>
-            <button type="button" name="button" class="button is-warning" style="width : 10%" @click="country(t)">Random</button>
+            <button type="button" name="button" class="button is-warning" style="width : 10%" @click="country(contry)">Random</button>
             </div>
 
-            <div class="box" v-for="data in foods" v-if="data.type === t">
+            <div class="box" v-for="data in foods" v-if="data.type === contry">
               <div class="" >
                 <button class="delete is-danger" aria-label="delete" @click = "deleteData(data)"></button>
                 <img :src="data.picture" width="100 px" height="100 px">&nbsp;&nbsp;
@@ -125,8 +125,8 @@ export default {
       console.log(data['.key'])
       this.$firebaseRefs.foods.child(data['.key']).remove()
     },
-    country (t) {
-      var a = this.foods.filter(food => food.type === t)
+    country (contry) {
+      var a = this.foods.filter(food => food.type === contry)
       var b = a[Math.round(Math.random() * (a.length - 0) + 0)]
       this.food = b
       console.log(this.food)
